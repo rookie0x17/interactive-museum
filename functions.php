@@ -39,4 +39,15 @@
         }
 
     }
+
+    function displaySearch() {
+
+        echo '<form class="form-inline">
+            <div class="form-group">
+            <input type="text" class="form-control" id="search" placeholder="Search an Artwork">
+            </div>
+            <button type="submit" class="btn btn-secondary"> Search an Artwork </button>
+            </form> ';
+             
+    }
 ?>

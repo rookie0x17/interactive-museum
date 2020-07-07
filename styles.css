@@ -61,11 +61,27 @@ html {
 .artworkName {
   margin-top: 20px;
   font-size: large;
+  
 }
 
 #recArtwork {
   border:1px solid grey;
   border-radius: 5px;
+}
 
- 
+#whatis {
+  padding-right: 150px;
+  padding-top: 20px;
+  font-size: 20px;
+}
+
+#startexp {
+
+  text-align: center;
+  padding-top: 50px;
+  
+}
+
+#opere {
+  padding-top:20px;
 }
