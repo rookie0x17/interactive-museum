@@ -45,3 +45,27 @@ html {
   #signupalert {
     display: none;
   }
+
+.mainContainer {
+  padding:60px;
+}
+
+.time {
+  color:darkgray;
+  margin-left: 20px;
+  float: right;
+  
+  
+}
+
+.artworkName {
+  margin-top: 20px;
+  font-size: large;
+}
+
+#recArtwork {
+  border:1px solid grey;
+  border-radius: 5px;
+
+ 
+}
