@@ -28,7 +28,7 @@
         <a class="nav-link" href="?page=artwork"> Artwork </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="?page=tutorial">Tutorial</a>
+        <a class="nav-link" href="https://localhost/interactive-museum/views/tutorial.php">Tutorial</a>
       </li>
       
     </ul>
