@@ -5,7 +5,7 @@
            
         </div>
         <div class="col-md-7" id="recArtwork">
-            <h1 class="display-1">Artwork Catalog</h1>
+            <h1 class="display-1">Artwork Searched</h1>
             
             <table class="table">
             <thead>

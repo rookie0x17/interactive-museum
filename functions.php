@@ -42,11 +42,12 @@
 
     function displaySearch() {
 
-        echo '<form class="form-inline">
+        echo '<form class="form-inline" style="margin-left:20px;">
             <div class="form-group">
-            <input type="text" class="form-control" id="search" placeholder="Artwork name">
+            <input type="hidden" name="page" value="search">
+            <input type="text" name="q" class="form-control" id="search" placeholder="Artwork name">
             </div>
-            <button type="submit" class="btn btn-secondary"> Search </button>
+            <button type="submit" class="btn btn-secondary" style="margin-left:20px;" > Search </button>
             </form> ';
              
     }
@@ -59,7 +60,7 @@
         
         $result = mysqli_query($link , $query);
 
-        if(mysqli_num_rows($result) == 0 ){
+        if(mysqli_num_rows($result) == 0){
 
             echo "<p>There are no artwork</p>";
 
@@ -73,6 +74,35 @@
             }
 
         }
+
+    }
+
+    function displayArtworkSearched(){
+
+        global $link;
+
+        $query = "SELECT * FROM artwork WHERE name LIKE '%".mysqli_real_escape_string($link,$_GET['q'])."%'";
+
+       
+        
+        $result = mysqli_query($link , $query);
+
+        if(!$result || mysqli_num_rows($result) == 0){
+
+            echo "<h1>There are no artwork with this name</h1>";
+
+        }
+
+        else {
+
+            while ($row = mysqli_fetch_assoc($result)) {
+
+                echo "<tr><td> ".$row['name']."</td> <td>".$row['since']."</td>  <td><img src=".$row['url']. " height='100px' width='100px'> </td> </tr>"  ;
+            }
+
+        }
+
+
 
     }
 ?>

@@ -24,6 +24,11 @@
 
         include("views/hologram.html");
 
+
+    } else if($_GET['page'] == 'search') {
+
+        include("views/search.php");
+
     } else {
 
         include("views/home.php");
