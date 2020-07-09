@@ -99,7 +99,7 @@
         data: "email=" + $("#email-l").val() + "&password=" + $("#password-l").val() ,
         success: function(result) {
           if(result == "1"){
-            window.location.assign("https://localhost/int-museum/");
+            window.location.assign("https://localhost/int-museum/?page=home");
           } else {
 
             $("#loginalert").html(result).show();
@@ -117,7 +117,7 @@
         data: "email=" + $("#email").val() + "&password=" + $("#password").val() + "&r-password=" + $("#r-password").val() ,
         success: function(result) {
           if(result == "1"){
-            window.location.assign("https://localhost/int-museum/");
+            window.location.assign("https://localhost/int-museum/?page=home");
           } else {
 
             $("#signupalert").html(result).show();
