@@ -24,7 +24,7 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
-      <li <?php if($_GET['page'] == '' || $_GET['page'] =='home') echo "class='nav-item active'"; else {echo "class='nav-item'" ;} ?> >
+      <li <?php if(!isset($_GET['page']))  echo "class='nav-item active'" ; else if($_GET['page'] == '' || $_GET['page'] =='home' ){ echo "class='nav-item active'";} else {echo "class='nav-item'" ;} ?> >
         <a class="nav-link" href="?page=home"> Home </a>
       </li>
       
@@ -61,9 +61,14 @@
   <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#login" style="margin-right:15px" > Login </button>  
   <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#signup" style="margin-right:20px"> Sign Up </button>
 
+
+
+
     <?php }  ?>
   </form>
 </nav>
+
+
 
 
 
