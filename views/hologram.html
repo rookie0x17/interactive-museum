@@ -5,10 +5,10 @@
 	<style>
 		body{margin: 0px; padding: 0px; background-color: black;}
 		canvas {width: 100%; height: 100%; background-color: black;}
-		p{position: absolute; color: red; z-index: 999; left: 50%; top: 50%; margin-top: -9px; margin-left:-4px;}
+		#punto{position: absolute; color: red; z-index: 999; left: 50%; top: 50%; margin-top: -9px; margin-left:-4px;}
 	</style>
-	<script src="three.js"></script>
-	<script charset="utf-8" src="ColladaLoader.js"></script>
+	<script src="https://localhost/int-museum/views/three.js"></script>
+	<script charset="utf-8" src="https://localhost/int-museum/views/ColladaLoader.js"></script>
 </head>
 <body>
 
@@ -86,7 +86,7 @@
 			hologram.remove(artwork);
 			var loader = new THREE.ColladaLoader();
 			loader.options.convertUpAxis = true;
-			loader.load('media/' + type + '.dae', function (collada) {
+			loader.load('views/media/' + type + '.dae', function (collada) {
 				artwork = collada.scene;
 				artwork.scale.x = artwork.scale.y = artwork.scale.z = 10.5;
 				artwork.position.x = 0;
@@ -136,12 +136,7 @@
 			renderer.setSize(window.innerWidth, window.innerHeight);	
 		}
 		
-		 document.addEventListener('mousedown', () => document.documentElement.requestFullscreen());
-                document.addEventListener('fullscreenchange', () => {
-                    if (document.fullscreenElement != null) {
-                        screen.orientation.lock("natural")
-                    }
-                });
+		
 				
 		function updateSize() {
 			
@@ -297,6 +292,6 @@
 		getOrientationValues();
 		getArtwork();
 	</script>
-	<p>+</p>
+	<div id="punto">+</div>
 </body>
 </html>
