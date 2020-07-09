@@ -69,7 +69,7 @@
 
             while ($row = mysqli_fetch_assoc($result)) {
 
-                echo "<tr><td> ".$row['name']."</td> <td>".$row['date']."</td>  <td> </td> </tr>"  ;
+                echo "<tr><td> ".$row['name']."</td> <td>".$row['since']."</td>  <td><img src=".$row['url']. " height='100px' width='100px'> </td> </tr>"  ;
             }
 
         }

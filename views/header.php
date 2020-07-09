@@ -1,5 +1,9 @@
 <!doctype html>
 <html lang="en">
+
+    
+
+
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -20,20 +24,25 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="?page=home"> Home <span class="sr-only">(current)</span></a>
+      <li <?php if($_GET['page'] == '' || $_GET['page'] =='home') echo "class='nav-item active'"; else {echo "class='nav-item'" ;} ?> >
+        <a class="nav-link" href="?page=home"> Home </a>
       </li>
       
-      <li class="nav-item">
-        <a class="nav-link" href="?page=artwork"> Artwork </a>
+      <?php 
+        if(!EMPTY($_SESSION['id'])) { 
+      ?>
+
+      <li <?php if($_GET['page'] =='artwork') echo "class='nav-item active'"; else {echo "class='nav-item'" ;} ?>>
+        <a class="nav-link" href="?page=artwork"> Artwork </span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="?page=tutorial">Tutorial</a>
+      <li <?php if($_GET['page'] =='tutorial') echo "class='nav-item active'"; else {echo "class='nav-item'" ;} ?>>
+        <a class="nav-link" href="?page=tutorial">Tutorial </span></a>
       </li>
-      <li class="nav-item">
+      <li <?php if($_GET['page'] =='hologram') echo "class='nav-item active'"; else {echo "class='nav-item'" ;} ?>>
         <a class="nav-link" href="?page=hologram">Hologram</a>
       </li>
-      
+        <?php } ?>
+
     </ul>
   </div>
   <form class="form-inline pull-xs-right">
@@ -55,3 +64,7 @@
     <?php }  ?>
   </form>
 </nav>
+
+
+
+
