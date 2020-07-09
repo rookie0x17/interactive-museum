@@ -44,10 +44,35 @@
 
         echo '<form class="form-inline">
             <div class="form-group">
-            <input type="text" class="form-control" id="search" placeholder="Search an Artwork">
+            <input type="text" class="form-control" id="search" placeholder="Artwork name">
             </div>
-            <button type="submit" class="btn btn-secondary"> Search an Artwork </button>
+            <button type="submit" class="btn btn-secondary"> Search </button>
             </form> ';
              
+    }
+
+    function displayArtwork(){
+
+        global $link;
+
+        $query = "SELECT * FROM artwork ORDER BY `name` ";
+        
+        $result = mysqli_query($link , $query);
+
+        if(mysqli_num_rows($result) == 0 ){
+
+            echo "<p>There are no artwork</p>";
+
+        }
+
+        else {
+
+            while ($row = mysqli_fetch_assoc($result)) {
+
+                echo "<tr><td> ".$row['name']."</td> <td>".$row['date']."</td>  <td> </td> </tr>"  ;
+            }
+
+        }
+
     }
 ?>
