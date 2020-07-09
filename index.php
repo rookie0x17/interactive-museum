@@ -16,6 +16,10 @@
 
         include("views/tutorial.php");
 
+    } else if($_GET['page'] == 'hologram') {
+
+        include("views/hologram.html");
+
     } else {
 
         include("views/home.php");

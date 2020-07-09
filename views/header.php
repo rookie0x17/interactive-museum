@@ -30,6 +30,9 @@
       <li class="nav-item">
         <a class="nav-link" href="?page=tutorial">Tutorial</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="?page=hologram">Hologram</a>
+      </li>
       
     </ul>
   </div>
