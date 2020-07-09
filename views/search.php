@@ -16,7 +16,7 @@
                 </tr>
             </thead>
             <tbody>
-                <?php displayArtwork(); ?>
+                <?php displayArtworkSearched(); ?>
             </tbody>
             </table>
   
@@ -36,4 +36,3 @@
     
 
 </div>
-
