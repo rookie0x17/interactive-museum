@@ -1,0 +1,302 @@
+<html>
+<head>
+	<!-- Using ER NEC Monitor - Resolution is 1280x1024 -->
+	<title>Hologram</title>
+	<style>
+		body{margin: 0px; padding: 0px; background-color: black;}
+		canvas {width: 100%; height: 100%; background-color: black;}
+		p{position: absolute; color: red; z-index: 999; left: 50%; top: 50%; margin-top: -9px; margin-left:-4px;}
+	</style>
+	<script src="three.js"></script>
+	<script charset="utf-8" src="ColladaLoader.js"></script>
+</head>
+<body>
+
+
+	<script type="text/javascript">
+		var windowWidth  = window.innerWidth * window.devicePixelRatio;
+		var windowHeight  = window.innerHeight * window.devicePixelRatio;
+		
+		//create scene
+		var scene = new THREE.Scene();
+		var renderer = new THREE.WebGLRenderer();
+		renderer.setSize(window.innerWidth, window.innerHeight);
+		document.body.appendChild(renderer.domElement); 
+		
+		//create views
+		var views = [
+		{ 
+			left: 0,
+			bottom: 0.5,
+			width: 0.5,
+			height: 0.5,
+			background: { r: 0.0, g: 0.0, b: 0.0, a: 1 },
+			eye: [ 0, 300, 1800 ],
+			up: [ 0, 1, 0 ],
+			fov: 30,
+			angle : 0,
+			rotation: 33.75
+		},
+		{ 
+			left: 0,
+			bottom: 0,
+			width: 0.5,
+			height: 0.5,
+			background: { r: 0.0, g: 0.0, b: 0.0, a: 1 },
+			eye: [ 0, 300, 1800 ],
+			up: [ 0, 1, 0 ],
+			fov: 30,
+			angle: 90,
+			rotation: 101.25
+		},
+		{ 
+			left: 0.5,
+			bottom: 0,
+			width: 0.5,
+			height: 0.5,
+			background: { r: 0.0, g: 0.0, b: 0.0, a: 1 },
+			eye: [ 0, 300, 1800 ],
+			up: [ 0, 1, 0 ],
+			fov: 30,
+			angle: 180,
+			rotation: -101.25
+		},
+		{ 
+			left: 0.5,
+			bottom: 0.5,
+			width: 0.5,
+			height: 0.5,
+			background: { r: 0.0, g: 0.0, b: 0.0, a: 1 },
+			eye: [ 0, 300, 1800 ],
+			up: [ 0, 1, 0 ],
+			fov: 30,
+			angle: 270,
+			rotation: 101.25
+		}
+		];
+		
+		window.ambient = new THREE.AmbientLight(0x666666)
+		scene.add(ambient)
+		
+		var artwork;
+		
+		function createModel(type){
+			//ARTWORK MODEL
+			
+			hologram.remove(artwork);
+			var loader = new THREE.ColladaLoader();
+			loader.options.convertUpAxis = true;
+			loader.load('media/' + type + '.dae', function (collada) {
+				artwork = collada.scene;
+				artwork.scale.x = artwork.scale.y = artwork.scale.z = 10.5;
+				artwork.position.x = 0;
+				artwork.position.z = -30;
+				artwork.position.y = -20;
+				
+				artwork.rotation.set(-0.1,0,0); // Set initial rotation
+				
+				hologram.add(artwork);
+			});
+			
+		}
+		
+		hologram = new THREE.Object3D()
+		scene.add(hologram)
+		
+		//add cameras
+		for (var i =  0; i < views.length; i++) {
+			var view = views[i];
+			var camera = new THREE.PerspectiveCamera(view.fov, windowWidth / windowHeight, 1, 10000);
+			camera.position.x = view.eye[ 0 ];
+			camera.position.y = view.eye[ 1 ];
+			camera.position.z = view.eye[ 2 ];
+			camera.up.x = view.up[ 0 ];
+			camera.up.y = view.up[ 1 ];
+			camera.up.z = view.up[ 2 ];
+			view.camera = camera;
+		}
+		
+		//initite variables
+		var cameraRadius = 290
+		var rotateY = 90, rotateX = 0, curY = 0
+		
+		//window resize method
+		window.addEventListener('resize', onWindowResize, false);
+		function onWindowResize(){
+			windowWidth  = window.innerWidth * window.devicePixelRatio;
+			windowHeight  = window.innerHeight * window.devicePixelRatio;
+			
+			for (var i =  0; i < views.length; i++) {
+				var view = views[i]
+				var camera = view.camera;
+				camera.aspect = windowWidth / windowHeight;
+				camera.updateProjectionMatrix();
+			}
+			
+			renderer.setSize(window.innerWidth, window.innerHeight);	
+		}
+		
+		 document.addEventListener('mousedown', () => document.documentElement.requestFullscreen());
+                document.addEventListener('fullscreenchange', () => {
+                    if (document.fullscreenElement != null) {
+                        screen.orientation.lock("natural")
+                    }
+                });
+				
+		function updateSize() {
+			
+			if (windowWidth != window.innerWidth || windowHeight != window.innerHeight) {
+				
+				windowWidth  = window.innerWidth;
+				windowHeight = window.innerHeight;
+				
+				renderer.setSize (windowWidth, windowHeight);
+				
+			}
+			
+		}
+		
+		var i = 0;
+		var temp = [];
+		var array = [];
+		var type;
+		var lastType ="";
+		//Websocket API duplicates REST API functionality and provides the ability to subscribe to device data changes.
+		
+		function getOrientationValues() {
+			
+			var token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtaWdsaW9yZS4xNjEzNjE0QHN0dWRlbnRpLnVuaXJvbWExLml0Iiwic2NvcGVzIjpbIlRFTkFOVF9BRE1JTiJdLCJ1c2VySWQiOiI2MmQyZDdkMC1iN2I1LTExZWEtYjg4Mi1hNWNmN2UyNjEwN2QiLCJmaXJzdE5hbWUiOiJBbGVzc2FuZHJvIiwibGFzdE5hbWUiOiJNaWdsaW9yZSIsImVuYWJsZWQiOnRydWUsInByaXZhY3lQb2xpY3lBY2NlcHRlZCI6dHJ1ZSwiaXNQdWJsaWMiOmZhbHNlLCJ0ZW5hbnRJZCI6IjYyYjE0NjEwLWI3YjUtMTFlYS1iODgyLWE1Y2Y3ZTI2MTA3ZCIsImN1c3RvbWVySWQiOiIxMzgxNDAwMC0xZGQyLTExYjItODA4MC04MDgwODA4MDgwODAiLCJpc3MiOiJjbG91ZC50aGluZ3Nib2FyZC5pbyIsImlhdCI6MTU5MzE4MDk0MCwiZXhwIjoxNTk0OTgwOTQwfQ.p0ZpSKKG_WUVKijDmIfn_dzn9mHamm5Q7ean5KHC3ryEveK3Y6NRs4AwPZEV0NGZI1wzWJX3quLdQvm7kk7gqQ";
+			var entityId = "f16bd140-b7b5-11ea-b882-a5cf7e26107d";
+			var webSocket = new WebSocket("wss://cloud.thingsboard.io/api/ws/plugins/telemetry?token=" + token);
+			
+			webSocket.onopen = function () {
+				var object = {
+					tsSubCmds: [
+					{
+						entityType: "DEVICE",
+						entityId: entityId,
+						
+						scope: "LATEST_TELEMETRY",
+						cmdId: 10,
+						keys: "axisX,axisY,axisZ,rad"
+					}
+					],
+					historyCmds: [],
+					attrSubCmds: []
+				};
+				var data = JSON.stringify(object);
+				webSocket.send(data);				
+			};
+			
+			webSocket.onmessage = function (event) {
+				var received_msg = event.data;
+				var msg=JSON.parse(event.data);
+				
+				array[0] = parseFloat(msg.data.axisX[0][1]);
+				array[1] = parseFloat(msg.data.axisY[0][1]);
+				array[2] = parseFloat(msg.data.axisZ[0][1]);
+				array[3] = parseFloat(msg.data.rad[0][1]);
+				
+				hologram.quaternion.fromArray(array);
+			};
+			
+		}
+		
+		
+		function getArtwork() {
+			
+			var token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtaWdsaW9yZS4xNjEzNjE0QHN0dWRlbnRpLnVuaXJvbWExLml0Iiwic2NvcGVzIjpbIlRFTkFOVF9BRE1JTiJdLCJ1c2VySWQiOiI2MmQyZDdkMC1iN2I1LTExZWEtYjg4Mi1hNWNmN2UyNjEwN2QiLCJmaXJzdE5hbWUiOiJBbGVzc2FuZHJvIiwibGFzdE5hbWUiOiJNaWdsaW9yZSIsImVuYWJsZWQiOnRydWUsInByaXZhY3lQb2xpY3lBY2NlcHRlZCI6dHJ1ZSwiaXNQdWJsaWMiOmZhbHNlLCJ0ZW5hbnRJZCI6IjYyYjE0NjEwLWI3YjUtMTFlYS1iODgyLWE1Y2Y3ZTI2MTA3ZCIsImN1c3RvbWVySWQiOiIxMzgxNDAwMC0xZGQyLTExYjItODA4MC04MDgwODA4MDgwODAiLCJpc3MiOiJjbG91ZC50aGluZ3Nib2FyZC5pbyIsImlhdCI6MTU5MzE4MDk0MCwiZXhwIjoxNTk0OTgwOTQwfQ.p0ZpSKKG_WUVKijDmIfn_dzn9mHamm5Q7ean5KHC3ryEveK3Y6NRs4AwPZEV0NGZI1wzWJX3quLdQvm7kk7gqQ";
+			var entityId = "f16bd140-b7b5-11ea-b882-a5cf7e26107d";
+			var webSocket = new WebSocket("wss://cloud.thingsboard.io/api/ws/plugins/telemetry?token=" + token);
+			
+			webSocket.onopen = function () {
+				var object = {
+					tsSubCmds: [
+					{
+						entityType: "DEVICE",
+						entityId: entityId,
+						
+						scope: "LATEST_TELEMETRY",
+						cmdId: 10,
+						keys: "shake"
+						
+					}
+					],
+					historyCmds: [],
+					attrSubCmds: []
+				};
+				var data = JSON.stringify(object);
+				webSocket.send(data);
+
+			};
+			
+			webSocket.onmessage = function (event) {
+				var received_msg = event.data;
+				var msg=JSON.parse(event.data);
+			
+				type = msg.data.shake[0][1];
+				
+				if(type!=lastType){
+					lastType=type;
+					createModel(type);
+					
+				}
+	
+			};
+
+		}
+		
+		function render(){
+			
+			updateSize()			
+			
+			//for each view
+			for (var i =  0; i < views.length; i++) {
+				//grab each view
+				var view = views[i]
+				
+				//grab each camera
+				var camera = view.camera;
+				
+				//Adjust camera within 3D spherical coordinates
+				camera.position.x = 0 + cameraRadius * Math.sin(rotateY * Math.PI/180) * Math.cos(view.angle * Math.PI/180)
+				camera.position.z = 0 + cameraRadius * Math.sin(rotateY * Math.PI/180) * Math.sin(view.angle * Math.PI/180)
+				camera.position.y = 0 + cameraRadius * Math.cos(rotateY * Math.PI/180)
+				camera.lookAt(scene.position)
+				
+				//Set rotation of camera on Z-Axis
+				camera.rotation.z= view.rotation - Math.PI;
+				
+				//Grab view ports
+				var left   = Math.floor(windowWidth  * view.left);
+				var bottom = Math.floor(windowHeight * view.bottom);
+				var width  = Math.floor(windowWidth  * view.width);
+				var height = Math.floor(windowHeight * view.height);
+				
+				//Render
+				renderer.setViewport(left, bottom, width, height);
+				renderer.setScissor(left, bottom, width, height);
+				renderer.enableScissorTest (true);
+				renderer.setClearColor(view.background, view.background.a);
+				
+				camera.aspect = width / height;
+				camera.updateProjectionMatrix();
+				
+				renderer.render(scene, camera)
+			}
+		}
+		
+		
+		function animate(){
+			render();
+			requestAnimationFrame( animate );
+		}
+		
+		//start animation loop
+		animate();
+		getOrientationValues();
+		getArtwork();
+	</script>
+	<p>+</p>
+</body>
+</html>
