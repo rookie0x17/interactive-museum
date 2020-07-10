@@ -88,7 +88,12 @@
 			loader.options.convertUpAxis = true;
 			loader.load('views/media/' + type + '.dae', function (collada) {
 				artwork = collada.scene;
+				if(type=="Discobolus"){
 				artwork.scale.x = artwork.scale.y = artwork.scale.z = 10.5;
+				}
+				else{
+				artwork.scale.x = artwork.scale.y = artwork.scale.z = 0.5;
+				}
 				artwork.position.x = 0;
 				artwork.position.z = -30;
 				artwork.position.y = -20;
