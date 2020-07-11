@@ -65,6 +65,10 @@
     <input type="text" class="form-control" id="email" placeholder="email">
   </div>
   <div class="form-group">
+    <label for="username">Username</label>
+    <input type="text" class="form-control" id="username" placeholder="username">
+  </div>
+  <div class="form-group">
     <label for="password">Password</label>
     <input type="password" class="form-control" id="password" placeholder="password">
   </div>
@@ -114,7 +118,7 @@
     $.ajax({
         type: "POST",
         url: "actions.php?action=signup",
-        data: "email=" + $("#email").val() + "&password=" + $("#password").val() + "&r-password=" + $("#r-password").val() ,
+        data: "email=" + $("#email").val() +"&username="+ $("#username").val() +"&password=" + $("#password").val() + "&r-password=" + $("#r-password").val() ,
         success: function(result) {
           if(result == "1"){
             window.location.assign("https://localhost/int-museum/?page=home");

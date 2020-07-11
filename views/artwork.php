@@ -11,7 +11,7 @@
             <thead>
                 <tr>
                 <th scope="col">Name</th>
-                <th scope="col">Date</th>
+                <th scope="col">View artwork presentation</th>
                 <th scope="col">Preview</th>
                 </tr>
             </thead>
