@@ -27,7 +27,8 @@
     
     <div class="row">
 
-        <div class="col-md-12"> <h1 id="startexp"> Are you ready to start this experience?</h1></div>
+        <div class="col-md-12"> <h1 id="startexp"> Are you ready to start this experience?</h1> <h3 id="startexp2">Please Sign Up or Login to start this experience!</h3></div>
+        
 
     </div>
     
