@@ -29,6 +29,10 @@
 
         include("views/search.php");
 
+    } else if($_GET['page'] == 'artworkPres') {
+
+        include("views/artworkPres.php");
+
     } else {
 
         include("views/home.php");

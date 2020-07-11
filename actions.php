@@ -9,14 +9,14 @@
 
         if (!$_POST['email']) {
 
-            $error = "An email address is requested" ;
+            $error = "An email address or an username is requested" ;
         }
 
         else if (!$_POST['password']) {
 
             $error = "A password is requested" ;
         } 
-
+        
         else if (!filter_var( $_POST['email'] , FILTER_VALIDATE_EMAIL)) {
             $error = "Invalid email format";
           }
@@ -25,7 +25,10 @@
         $query = "SELECT * FROM user WHERE email= '". mysqli_real_escape_string($link, $_POST['email'])."' LIMIT 1";
         $result = mysqli_query($link, $query);
 
+        
+
         $row = mysqli_fetch_assoc($result) ;     
+        
        
         if ($row['password'] == md5(md5($row['id']).$_POST['password']) ) {
 
@@ -54,6 +57,12 @@
             $error = "An email address is requested" ;
         }
 
+        else if (!$_POST['username']) {
+
+            $error = "An username is requested" ;
+        } 
+
+
         else if (!$_POST['password']) {
 
             $error = "A password is requested" ;
@@ -72,8 +81,8 @@
         $result = mysqli_query($link, $query);
         if(mysqli_num_rows($result) > 0 ) $error = "That email is already taken";
         else {
-            $query = "INSERT INTO user ( email ,password ) VALUES ('". mysqli_real_escape_string($link, $_POST['email'])."' , 
-            '". mysqli_real_escape_string($link, $_POST['password'])."' ) ";
+            $query = "INSERT INTO user ( email ,password , username) VALUES ('". mysqli_real_escape_string($link, $_POST['email'])."' , 
+            '". mysqli_real_escape_string($link, $_POST['password'])."' , '". mysqli_real_escape_string($link, $_POST['username']). "' ) ";
             if (mysqli_query($link , $query)) {
                 
                 $_SESSION['id'] = mysqli_insert_id($link);
