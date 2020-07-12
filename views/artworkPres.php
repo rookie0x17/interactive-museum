@@ -1,9 +1,9 @@
 <div class="mainContainer">
 
     <div class="row">
+
         <div class="col-md-1">
-           
-        </div>
+        </div>       
         <div class="col-md-7" id="presArtwork">
                 
         <?php displayArtworkPres(); ?>

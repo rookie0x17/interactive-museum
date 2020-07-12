@@ -144,11 +144,20 @@
         }
 
         $row = mysqli_fetch_assoc($result);
+
+        $buttonPres = '<form class="form-inline">
+                <div class="form-group">
+                <input type="hidden" name="page" value="hologram">
+                <input type="hidden" name="namework" value="'.$row['name'].'"
+                </div>
+                <button type="submit" class="btn btn-primary" > Start Hologram </button>
+                </form>' ;
+
         
         echo "<h1 class='display-3'> ".$artname."</h1>
             <div class='row' >
                 <div class='col-md-4'>
-                <img src=".$row['url']." style='max-height:400px;max-width:400px;' >
+                <img src=".$row['url']." style='max-height:300px;max-width:300px;' >
                 </div>
                 <div class='col-md-4' id='infoart'>
                 <h3><strong>Info about the artwork</strong></h3> 
@@ -160,7 +169,13 @@
                 <h5><strong> Created in:</strong> ".$row['since'] ."</h5>
 
                 <br>
-                <button class='btn btn-primary btn-lg'> Start Hologram </button>
+                <form class='form-inline'>
+                <div class='form-group'>
+                <input type='hidden' name='page' value='hologram'>
+                <input type='hidden' name='namework' value='".$row['name']."'>
+                </div>
+                <button type='submit' class='btn btn-primary'> Start Hologram </button>
+                </form>
                 </div>
             </div>
             

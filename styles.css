@@ -165,3 +165,8 @@ html {
 #ratestar {
   float:right;
 }
+
+#roba {
+  max-width: 100px;
+  max-height: 100px;
+}
