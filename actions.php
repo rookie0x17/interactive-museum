@@ -146,8 +146,7 @@
 					$row = mysqli_fetch_assoc($result);
 
 					$idartwork = $row['id'];
-			
-			 
+		 
 					$query = "INSERT INTO israted (iduser,idartwork, rate ,comment,date,username) VALUES ('$iduser' ,'$idartwork','". mysqli_real_escape_string($link, $_POST['rate'])."' , 
 					'". mysqli_real_escape_string($link, $_POST['comment'])."', NOW(),'$username' ) ";
 						if (mysqli_query($link , $query)) {
