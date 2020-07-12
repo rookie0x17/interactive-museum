@@ -114,10 +114,16 @@ p {
     </div>
   </div>
 </div>
+<?php 
+	$artname = $_GET['namework'];
+	echo "<input type='hidden' name='namework' value='".$artname."'>"
+	?>
+
 	<script type="text/javascript">
+	
 		var windowWidth  = window.innerWidth * window.devicePixelRatio;
 		var windowHeight  = window.innerHeight * window.devicePixelRatio;
-		
+		var type = "<?php echo $artname; ?>"
 		//create scene
 		var scene = new THREE.Scene();
 		var renderer = new THREE.WebGLRenderer();
@@ -260,7 +266,7 @@ p {
 		var i = 0;
 		var temp = [];
 		var array = [];
-		var type;
+		//var type;
 		var lastType ="";
 		//Websocket API duplicates REST API functionality and provides the ability to subscribe to device data changes.
 		
@@ -303,7 +309,7 @@ p {
 			
 		}
 		
-		
+		createModel(type);
 		function getArtwork() {
 			
 			var token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtaWdsaW9yZS4xNjEzNjE0QHN0dWRlbnRpLnVuaXJvbWExLml0Iiwic2NvcGVzIjpbIlRFTkFOVF9BRE1JTiJdLCJ1c2VySWQiOiI2MmQyZDdkMC1iN2I1LTExZWEtYjg4Mi1hNWNmN2UyNjEwN2QiLCJmaXJzdE5hbWUiOiJBbGVzc2FuZHJvIiwibGFzdE5hbWUiOiJNaWdsaW9yZSIsImVuYWJsZWQiOnRydWUsInByaXZhY3lQb2xpY3lBY2NlcHRlZCI6dHJ1ZSwiaXNQdWJsaWMiOmZhbHNlLCJ0ZW5hbnRJZCI6IjYyYjE0NjEwLWI3YjUtMTFlYS1iODgyLWE1Y2Y3ZTI2MTA3ZCIsImN1c3RvbWVySWQiOiIxMzgxNDAwMC0xZGQyLTExYjItODA4MC04MDgwODA4MDgwODAiLCJpc3MiOiJjbG91ZC50aGluZ3Nib2FyZC5pbyIsImlhdCI6MTU5MzE4MDk0MCwiZXhwIjoxNTk0OTgwOTQwfQ.p0ZpSKKG_WUVKijDmIfn_dzn9mHamm5Q7ean5KHC3ryEveK3Y6NRs4AwPZEV0NGZI1wzWJX3quLdQvm7kk7gqQ";
@@ -396,7 +402,7 @@ p {
 		//start animation loop
 		animate();
 		getOrientationValues();
-		getArtwork();
+		//getArtwork();
 	</script>
 	<div id="punto">+</div>
 	
@@ -428,7 +434,7 @@ p {
         data: "rate=" + val + "&comment=" + $("#message-text").val() + "&name=" + type,
         success: function(result) {
           if(result == "1"){
-            console.log(type);
+            window.location.assign("https://localhost/int-museum/?page=hologram");
           } else {
 
             $("#loginalert").html(result).show();
