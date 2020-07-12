@@ -9,10 +9,111 @@
 	</style>
 	<script src="https://localhost/int-museum/views/three.js"></script>
 	<script charset="utf-8" src="https://localhost/int-museum/views/ColladaLoader.js"></script>
+	<!-- Font Awesome Icon Library -->
+<link href='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
+<script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+<style>
+.rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center
+}
+
+.rating>input {
+    display: none
+}
+
+.rating>label {
+    position: relative;
+    width: 1em;
+    font-size: 55px;
+    color: #FFD600;
+    cursor: pointer
+}
+
+.rating>label::before {
+    content: "\2605";
+    position: absolute;
+    opacity: 0
+}
+
+.rating>label:hover:before,
+.rating>label:hover~label:before {
+    opacity: 1 !important
+}
+
+.rating>input:checked~label:before {
+    opacity: 1
+}
+
+.rating:hover>input:checked~label:before {
+    opacity: 0.4
+}
+
+body {
+    background: #000;
+    color: black
+}
+h1,
+p {
+    text-align: center
+}
+
+h1 {
+    margin-top: 150px
+}
+
+p {
+    font-size: 1.2rem
+}
+
+@media only screen and (max-width: 600px) {
+    h1 {
+        font-size: 14px
+    }
+
+    p {
+        font-size: 12px
+    }
+}
+
+</style>
 </head>
 <body>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Leave a feedback
+</button>
 
-
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5>Star rating </h5>
+<div class="rating" id="ratio"> <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label> <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label> <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
+</div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <div class="alert alert-danger" id="loginalert"></div>
+		<form>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Comment:</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary"  data-dismiss="modal" >Close</button>
+        <button type="button" class="btn btn-primary" id="Commit">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 	<script type="text/javascript">
 		var windowWidth  = window.innerWidth * window.devicePixelRatio;
 		var windowHeight  = window.innerHeight * window.devicePixelRatio;
@@ -298,5 +399,49 @@
 		getArtwork();
 	</script>
 	<div id="punto">+</div>
+	
+	<script>
+/*
+    $("#loginBtn").click(function(){
+      alert("qualcosa");
+    })
+*/
+	
+
+  $("#Commit").click(function() {
+	
+	var radios = document.getElementsByName('rating');
+	
+		
+		for (var i = 0, length = radios.length; i < length; i++) {
+				if (radios[i].checked) {
+    // do whatever you want with the checked radio
+				var val=radios[i].value;
+				console.log(val);
+    // only one radio can be logically checked, don't check the rest
+    break;
+  }
+}
+    $.ajax({
+        type: "POST",
+        url: "actions.php?action=commit",
+        data: "rate=" + val + "&comment=" + $("#message-text").val() + "&name=" + type,
+        success: function(result) {
+          if(result == "1"){
+            console.log(type);
+          } else {
+
+            $("#loginalert").html(result).show();
+
+          }
+        }
+    })
+
+  })
+
+
+
+
+</script>
 </body>
 </html>
