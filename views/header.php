@@ -30,19 +30,30 @@
       <li <?php if(!isset($_GET['page']))  echo "class='nav-item active'" ; else if($_GET['page'] == '' || $_GET['page'] =='home' ){ echo "class='nav-item active'";} else {echo "class='nav-item'" ;} ?> >
         <a class="nav-link" href="?page=home"> Home </a>
       </li>
-      
+
       <?php 
         if(!EMPTY($_SESSION['id'])) { 
       ?>
 
       <li <?php if(!isset($_GET['page']))  echo "class='nav-item'" ; else if($_GET['page'] == '' || $_GET['page'] =='artwork' ){ echo "class='nav-item active'";} else {echo "class='nav-item'" ;} ?>>
-        <a class="nav-link" href="?page=artwork"> Artwork </span></a>
+        <a class="nav-link" href="?page=artwork"> Artwork Catalog </span></a>
+      </li>
+
+      <li  <?php if(!isset($_GET['page']))  echo "class='nav-item'" ; else if($_GET['page'] == '' || $_GET['page'] =='favorite' ){ echo "class='nav-item active'";} else {echo "class='nav-item'" ;} ?>>
+        <a class="nav-link" href="?page=favorite">Your favorite artwork </span></a>
       </li>
       <li  <?php if(!isset($_GET['page']))  echo "class='nav-item'" ; else if($_GET['page'] == '' || $_GET['page'] =='tutorial' ){ echo "class='nav-item active'";} else {echo "class='nav-item'" ;} ?>>
         <a class="nav-link" href="?page=tutorial">Tutorial </span></a>
       </li>
+      
      
         <?php } ?>
+
+      <li <?php if(!isset($_GET['page']))  echo "class='nav-item active'" ; else if($_GET['page'] == '' || $_GET['page'] =='home' ){ echo "class='nav-item active'";} else {echo "class='nav-item'" ;} ?> >
+        <a class="nav-link" href="?page=about"> About Us </a>
+      </li>
+      
+      
 
     </ul>
   </div>

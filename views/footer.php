@@ -47,7 +47,7 @@
 </form>
       </div>
       <div class="modal-footer">
-      <button type="button" class="btn btn-info" data-toggle="modal" data-target="#changepass" data-dismiss="modal" > Forgot password? </button>
+      <button type="button" class="btn btn-link" data-toggle="modal" data-target="#changepass" data-dismiss="modal" > Forgot password? </button>
       <button type="button" class="btn btn-primary" id="loginBtn">Login</button>
       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         
