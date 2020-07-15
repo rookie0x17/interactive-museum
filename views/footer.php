@@ -40,7 +40,7 @@
   </div>
   <div class="form-group">
     <label for="google">Login  with Google</label>
-     <div class="g-signin2" id="google" data-onsuccess="onSignIn"></div>
+     <div class="g-signin2" id="google" data-onsuccess="onLogIn"></div>
 	 
 
   </div>
@@ -68,7 +68,7 @@
         </button>
       </div>
       <div class="modal-body">
-      <div class="alert alert-danger" id="loginalert"></div>
+      <div class="alert alert-danger" id="signupalert"></div>
       <form>
    <div class="form-group">
     <label for="email">Email</label>
@@ -152,7 +152,7 @@
 
 <script>
 	var profile;
-    function onSignIn(googleUser) {
+    function onLogIn(googleUser) {
       // get user profile information
       console.log(googleUser.getBasicProfile())
 	  profile = googleUser.getBasicProfile();
@@ -170,6 +170,30 @@
           } else {
 
             $("#loginalert").html(result).show();
+
+          }
+        }
+    })
+    }
+	
+	function onSignIn(googleUser) {
+      // get user profile information
+      console.log(googleUser.getBasicProfile())
+	  profile = googleUser.getBasicProfile();
+	
+	
+	  //window.location.assign("https://localhost/int-museum/?page=home");
+	  $.ajax({
+        type: "POST",
+        url: "actions.php?action=signupgoogle",
+        data: "email=" +profile.getEmail() ,
+        success: function(result) {
+          if(result == "1"){
+			  
+            window.location.assign("https://localhost/int-museum/?page=home");
+          } else {
+
+            $("#signupalert").html(result).show();
 
           }
         }
