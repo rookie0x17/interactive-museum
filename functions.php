@@ -3,7 +3,7 @@
     session_start();
     $_SESSION['id'] = isset( $_SESSION['id'] )? $_SESSION['id'] : '';
 
-    $link = mysqli_connect("localhost" , "daniel" , "museum" , "int-museum");
+    $link = mysqli_connect("localhost" , "alex" , "alessandro" , "interactive");
 
     if (mysqli_connect_errno()) {
 
@@ -195,6 +195,17 @@
             <p class='lead'>".$row['descrizione']."</p>
             </div>
             </div>
+			<!-- AddToAny BEGIN -->
+			<div class='a2a_kit a2a_kit_size_32 a2a_default_style'>
+				<a class='a2a_dd' href='https://www.addtoany.com/share'></a>
+				<a class='a2a_button_facebook'></a>
+				<a class='a2a_button_twitter'></a>
+				<a class='a2a_button_email'></a>
+				<a class='a2a_button_whatsapp'></a>
+				<a class='a2a_button_telegram'></a>
+			</div>
+<script async src='https://static.addtoany.com/menu/page.js'></script>
+<!-- AddToAny END -->
         ";
     }
 
