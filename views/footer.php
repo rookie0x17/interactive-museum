@@ -13,6 +13,8 @@
  
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+	<meta name="google-signin-client_id" content="108995147197-a096lo4rri4vidq1psriucva9pgqq9b9.apps.googleusercontent.com">
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
   
  <!-- Modal 1 -->
 <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -31,9 +33,16 @@
     <label for="email">Email</label>
     <input type="text" class="form-control" id="email-l" placeholder="email">
   </div>
+  <div class="form-group pass_show-l">
+        <label for="opass">Password <span class="required"></span></label>
+        <input type="password" name="opass" class="form-control" id="password-l" placeholder="password" required="required" autocomplete="off">
+        <span id="error_opass" class="error"></span>
+  </div>
   <div class="form-group">
-    <label for="password">Password</label>
-    <input type="password" class="form-control" id="password-l" placeholder="password">
+    <label for="google">Login  with Google</label>
+     <div class="g-signin2" id="google" data-onsuccess="onSignIn"></div>
+	 
+
   </div>
 </form>
       </div>
@@ -61,7 +70,7 @@
       <div class="modal-body">
       <div class="alert alert-danger" id="loginalert"></div>
       <form>
-  <div class="form-group">
+   <div class="form-group">
     <label for="email">Email</label>
     <input type="text" class="form-control" id="email" placeholder="email">
   </div>
@@ -69,14 +78,25 @@
     <label for="username">Username</label>
     <input type="text" class="form-control" id="username" placeholder="username">
   </div>
-  <div class="form-group">
-    <label for="password">Password</label>
-    <input type="password" class="form-control" id="password" placeholder="password">
-  </div>
+  <div class="form-group pass_show">
+        <label for="opass">Password <span class="required"></span></label>
+        <input type="password" name="opass" class="form-control" id="password" placeholder="password" required="required" autocomplete="off">
+        <span id="error_opass" class="error"></span>
+
+        <label for="opass">Repeat password <span class="required"></span></label>
+        <input type="password" name="opass" class="form-control" id="r-password" placeholder="repeat password" required="required" autocomplete="off">
+        <span id="error_opass" class="error"></span>
+		<input type="checkbox" class="ptxt" > Show</input>
+      </div>
+  
+  
+  
 
   <div class="form-group">
-    <label for="r-password">Repeat password</label>
-    <input type="password" class="form-control" id="r-password" placeholder="repeat password">
+    <label for="google">Sign up with Google</label>
+     <div class="g-signin2" id="google" data-onsuccess="onSignIn"></div>
+	
+
   </div>
 </form>
       </div>
@@ -106,15 +126,18 @@
     <label for="email">Email</label>
     <input type="text" class="form-control" id="email-rec" placeholder="Your email">
   </div>
-  <div class="form-group">
-    <label for="password-rec">New password</label>
-    <input type="password" class="form-control" id="password-rec" placeholder="password">
-  </div>
+  
+  
+  <div class="form-group pass_show">
+        <label for="opass">New Password <span class="required"></span></label>
+        <input type="password" name="opass" class="form-control" id="password-rec" placeholder="password" required="required" autocomplete="off">
+        <span id="error_opass" class="error"></span>
 
-  <div class="form-group">
-    <label for="r-password-rec">Repeat new password</label>
-    <input type="password" class="form-control" id="r-password-rec" placeholder="repeat password">
-  </div>
+        <label for="opass">Repeat password <span class="required"></span></label>
+        <input type="password" name="opass" class="form-control" id="r-password-rec" placeholder="repeat password" required="required" autocomplete="off">
+        <span id="error_opass" class="error"></span>
+		<input type="checkbox" class="ptxt" > Show</input>
+      </div>
 </form>
       </div>
       <div class="modal-footer">
@@ -126,6 +149,33 @@
     </div>
   </div>
 </div>
+
+<script>
+	var profile;
+    function onSignIn(googleUser) {
+      // get user profile information
+      console.log(googleUser.getBasicProfile())
+	  profile = googleUser.getBasicProfile();
+	
+	
+	  //window.location.assign("https://localhost/int-museum/?page=home");
+	  $.ajax({
+        type: "POST",
+        url: "actions.php?action=logingoogle",
+        data: "email=" +profile.getEmail() ,
+        success: function(result) {
+          if(result == "1"){
+			  
+            window.location.assign("https://localhost/int-museum/?page=home");
+          } else {
+
+            $("#loginalert").html(result).show();
+
+          }
+        }
+    })
+    }
+  </script>
 
 
 <script>
@@ -187,6 +237,22 @@
     })
 
   })
+  
+  
+  $(document).on('click','.pass_show .ptxt', function(){ 
+	$(this).text($(this).text() == "Show" ? "Hide" : "Show");
+	$(this).prev().prev().attr('type', function(index, attr){return attr == 'password' ? 'text' : 'password'; });
+	$(this).prev().prev().prev().prev().prev().attr('type', function(index, attr){return attr == 'password' ? 'text' : 'password'; });
+});
+
+$(document).ready(function(){
+	$('.pass_show-l').append('<input type="checkbox" class="ptxt-l" > Show</input>');
+});
+$(document).on('click','.pass_show-l .ptxt-l', function(){ 
+	$(this).text($(this).text() == "Show" ? "Hide" : "Show");
+	$(this).prev().prev().attr('type', function(index, attr){return attr == 'password' ? 'text' : 'password'; });
+});
+
 
 
 </script>
