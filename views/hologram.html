@@ -106,10 +106,14 @@ p {
             <textarea class="form-control" id="message-text"></textarea>
           </div>
         </form>
-      </div>
+	  </div>
+	  <div style="padding-left:20px;">
+		<label for="vehicle1"> Do you want to add the artwork to your favorite list?</label>
+		<input type="checkbox" id="favorite" onclick="makeYes()" name="favorite" value="no" style="margin-left:10px ;">
+	  </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary"  data-dismiss="modal" >Close</button>
-        <button type="button" class="btn btn-primary" id="Commit">Save changes</button>
+        <button type="button" class="btn btn-primary" id="Commit">Post Rate</button>
       </div>
     </div>
   </div>
@@ -431,7 +435,7 @@ p {
     $.ajax({
         type: "POST",
         url: "actions.php?action=commit",
-        data: "rate=" + val + "&comment=" + $("#message-text").val() + "&name=" + type,
+        data: "rate=" + val + "&comment=" + $("#message-text").val() + "&name=" + type + "&favorite=" + $("#favorite").val(),
         success: function(result) {
           if(result == "1"){
             window.location.assign("https://localhost/int-museum/?page=hologram");
@@ -444,6 +448,19 @@ p {
     })
 
   })
+
+  function makeYes() {
+
+	  if(document.getElementById("favorite").value == "no"){
+		document.getElementById("favorite").value = "yes";
+	  } else {
+		document.getElementById("favorite").value = "no";
+	  }
+
+  		
+	}
+
+	
 
 
 

@@ -199,7 +199,7 @@
         $error = "" ;
 
         $favorite = $_POST['favorite'];
-        echo $favorite;
+        
         
         
         

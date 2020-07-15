@@ -100,7 +100,9 @@
 
         global $link;
 
-        $query = "SELECT * FROM artwork ORDER BY `name` ";
+        $iduser = $_SESSION["id"];
+
+        $query = "SELECT DISTINCT iduser,idartwork,favorite FROM isRated WHERE iduser=".$iduser." AND favorite='yes'";
         
         $result = mysqli_query($link , $query);
 
@@ -112,19 +114,30 @@
 
         }
 
+
+
         else {
 
-            while ($row = mysqli_fetch_assoc($result)) {
+            while ($row = mysqli_fetch_assoc($result) ) {
+
+                $query2 = "SELECT * FROM artwork WHERE id=".$row['idartwork']."" ;
+                $result2 = mysqli_query($link , $query2);
+
+
+                $row2 = mysqli_fetch_assoc($result2);
+                
 
                 $buttonPres = '<form class="form-inline">
                 <div class="form-group">
                 <input type="hidden" name="page" value="artworkPres">
-                <input type="hidden" name="namework" value="'.$row['name'].'"
+                <input type="hidden" name="namework" value="'.$row2['name'].'"
                 </div>
                 <button type="submit" class="btn btn-info" > View </button>
                 </form>' ;
 
-                echo "<tr><td> ".$row['name']."</td> <td>".$buttonPres."</td>  <td><img src=".$row['url']. " height='100px' width='100px'> </td> </tr>";
+                echo "<tr><td> ".$row2['name']."</td> <td>".$buttonPres."</td>  <td><img src=".$row2['url']. " height='100px' width='100px'> </td> </tr>";
+
+                
             }
 
         }
