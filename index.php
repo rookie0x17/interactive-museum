@@ -32,6 +32,9 @@
     } else if($_GET['page'] == 'artworkPres') {
 
         include("views/artworkPres.php");
+    }else if($_GET['page'] == 'passforgot') {
+
+        include("views/passforgot.php");
 
     } else {
 

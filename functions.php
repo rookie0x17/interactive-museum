@@ -13,7 +13,11 @@
 
     if (isset($_GET['function']) && $_GET['function']== "logout"){
         session_unset();
-    }
+    } 
+
+    
+
+    
 
     function displayRecentArtwork(){
 
@@ -50,6 +54,11 @@
             <button type="submit" class="btn btn-secondary" style="margin-left:20px;" > Search </button>
             </form> ';
              
+    }
+
+    function displaySucces(){
+      echo '<script>alert("Welcome to Geeks for Geeks")</script>';
+          
     }
 
     function displayArtwork(){
@@ -258,5 +267,9 @@
         }
 
         return $finalstring;
+    }
+
+    function displaySuccess(){
+       if ($_GET['email-rec']!="") echo "<script>alert('Success')</script>";
     }
 ?>

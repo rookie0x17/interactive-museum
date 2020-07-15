@@ -38,8 +38,9 @@
 </form>
       </div>
       <div class="modal-footer">
+      <button type="button" class="btn btn-info" data-toggle="modal" data-target="#changepass" data-dismiss="modal" > Forgot password? </button>
       <button type="button" class="btn btn-primary" id="loginBtn">Login</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         
       </div>
     </div>
@@ -58,7 +59,7 @@
         </button>
       </div>
       <div class="modal-body">
-      <div class="alert alert-danger" id="signupalert"></div>
+      <div class="alert alert-danger" id="loginalert"></div>
       <form>
   <div class="form-group">
     <label for="email">Email</label>
@@ -88,13 +89,50 @@
   </div>
 </div>
 
+<!-- Modal 3 -->
+<div class="modal fade" id="changepass" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Change your password</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      
+      <form>
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="text" class="form-control" id="email-rec" placeholder="Your email">
+  </div>
+  <div class="form-group">
+    <label for="password-rec">New password</label>
+    <input type="password" class="form-control" id="password-rec" placeholder="password">
+  </div>
+
+  <div class="form-group">
+    <label for="r-password-rec">Repeat new password</label>
+    <input type="password" class="form-control" id="r-password-rec" placeholder="repeat password">
+  </div>
+</form>
+      </div>
+      <div class="modal-footer">
+      <button type="button" class="btn btn-primary" id="change-pass">Change Password</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        
+        
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <script>
-/*
-    $("#loginBtn").click(function(){
-      alert("qualcosa");
-    })
-*/
+
+  
+
+
 
   $("#loginBtn").click(function() {
     $.ajax({
@@ -125,6 +163,24 @@
           } else {
 
             $("#signupalert").html(result).show();
+
+          }
+        }
+    })
+
+  })
+
+  $("#change-pass").click(function() {
+    $.ajax({
+        type: "POST",
+        url: "actions.php?action=passforgot",
+        data: "email-rec=" + $("#email-rec").val()+"&password-rec="+ $("#password-rec").val() +"&r-password-rec=" + $("#r-password-rec").val(),
+        success: function(result) {
+          if(result == "1"){
+            alert("Password changed successfully");
+            window.location.assign("https://localhost/int-museum/?page=home");
+          }  else {
+            alert(result);
 
           }
         }
