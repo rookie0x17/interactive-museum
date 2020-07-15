@@ -133,7 +133,9 @@
         $result = mysqli_query($link, $query);
         if(mysqli_num_rows($result) = $_POST['rate'] ) $error = "Same value"; */
          else {
-					$query = "SELECT * FROM artwork WHERE name LIKE '%".mysqli_real_escape_string($link,$artname)."%'";
+                    $query = "SELECT * FROM artwork WHERE name LIKE '%".mysqli_real_escape_string($link,$artname)."%'";
+                    
+                    
 
 					$result = mysqli_query($link , $query);
 
@@ -147,7 +149,7 @@
 
 					$idartwork = $row['id'];
 		 
-					$query = "INSERT INTO israted (iduser,idartwork, rate ,comment,date,username) VALUES ('$iduser' ,'$idartwork','". mysqli_real_escape_string($link, $_POST['rate'])."' , 
+					$query = "INSERT INTO isRated (iduser,idartwork, rate ,comment,date,username) VALUES ('$iduser' ,'$idartwork','". mysqli_real_escape_string($link, $_POST['rate'])."' , 
 					'". mysqli_real_escape_string($link, $_POST['comment'])."', NOW(),'$username' ) ";
 						if (mysqli_query($link , $query)) {
                 
