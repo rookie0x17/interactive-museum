@@ -13,7 +13,7 @@
  
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-	<meta name="google-signin-client_id" content="108995147197-a096lo4rri4vidq1psriucva9pgqq9b9.apps.googleusercontent.com">
+	<meta name="google-signin-client_id" content="419257723630-mp5vif7vkhf5ee1bjedu8rioj65hh2rt.apps.googleusercontent.com">
   <script src="https://apis.google.com/js/platform.js" async defer></script>
   
  <!-- Modal 1 -->

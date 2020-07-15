@@ -36,6 +36,9 @@
 
         include("views/favorite.php");
 
+    }    else if($_GET['page'] == 'about') {
+
+            include("views/about.php");   
     } else {
 
         include("views/home.php");
