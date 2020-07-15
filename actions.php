@@ -197,6 +197,12 @@
 		$artname = $_POST['name'];
 		$rate = $_POST['rate'];
         $error = "" ;
+
+        $favorite = $_POST['favorite'];
+        echo $favorite;
+        
+        
+        
 		
         if (!$_POST['rate']) {
 
@@ -231,8 +237,8 @@
 
 					$idartwork = $row['id'];
 		 
-					$query = "INSERT INTO isRated (iduser,idartwork, rate ,comment,date,username) VALUES ('$iduser' ,'$idartwork','". mysqli_real_escape_string($link, $_POST['rate'])."' , 
-					'". mysqli_real_escape_string($link, $_POST['comment'])."', NOW(),'$username' ) ";
+					$query = "INSERT INTO isRated (iduser,idartwork, rate ,comment,date,username,favorite) VALUES ('$iduser' ,'$idartwork','". mysqli_real_escape_string($link, $_POST['rate'])."' , 
+					'". mysqli_real_escape_string($link, $_POST['comment'])."', NOW(),'$username' ,'$favorite') ";
 						if (mysqli_query($link , $query)) {
                 
 
