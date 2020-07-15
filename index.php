@@ -32,9 +32,9 @@
     } else if($_GET['page'] == 'artworkPres') {
 
         include("views/artworkPres.php");
-    }else if($_GET['page'] == 'passforgot') {
+    }else if($_GET['page'] == 'favorite') {
 
-        include("views/passforgot.php");
+        include("views/favorite.php");
 
     } else {
 

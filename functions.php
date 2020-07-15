@@ -3,7 +3,7 @@
     session_start();
     $_SESSION['id'] = isset( $_SESSION['id'] )? $_SESSION['id'] : '';
 
-    $link = mysqli_connect("localhost" , "alex" , "alessandro" , "interactive");
+    $link = mysqli_connect("localhost" , "daniel" , "museum" , "int-museum");
 
     if (mysqli_connect_errno()) {
 
@@ -51,7 +51,7 @@
             <input type="hidden" name="page" value="search">
             <input type="text" name="q" class="form-control" id="search" placeholder="Artwork name">
             </div>
-            <button type="submit" class="btn btn-secondary" style="margin-left:20px;" > Search </button>
+            <button type="submit" class="btn btn-success" style="margin-left:20px;" > Search </button>
             </form> ';
              
     }
@@ -86,7 +86,42 @@
                 <input type="hidden" name="page" value="artworkPres">
                 <input type="hidden" name="namework" value="'.$row['name'].'"
                 </div>
-                <button type="submit" class="btn btn-secondary" > View </button>
+                <button type="submit" class="btn btn-info" > View </button>
+                </form>' ;
+
+                echo "<tr><td> ".$row['name']."</td> <td>".$buttonPres."</td>  <td><img src=".$row['url']. " height='100px' width='100px'> </td> </tr>";
+            }
+
+        }
+
+    }
+
+    function displayFavorite(){
+
+        global $link;
+
+        $query = "SELECT * FROM artwork ORDER BY `name` ";
+        
+        $result = mysqli_query($link , $query);
+
+        
+
+        if(mysqli_num_rows($result) == 0){
+
+            echo "<p>There are no artwork</p>";
+
+        }
+
+        else {
+
+            while ($row = mysqli_fetch_assoc($result)) {
+
+                $buttonPres = '<form class="form-inline">
+                <div class="form-group">
+                <input type="hidden" name="page" value="artworkPres">
+                <input type="hidden" name="namework" value="'.$row['name'].'"
+                </div>
+                <button type="submit" class="btn btn-info" > View </button>
                 </form>' ;
 
                 echo "<tr><td> ".$row['name']."</td> <td>".$buttonPres."</td>  <td><img src=".$row['url']. " height='100px' width='100px'> </td> </tr>";
