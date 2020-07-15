@@ -66,11 +66,47 @@
             $error = "Invalid email format";
           }
         
+        
+       else {
+        $query = "SELECT * FROM user WHERE email= '". mysqli_real_escape_string($link, $_POST['email'])."' LIMIT 1";
+        $result = mysqli_query($link, $query);
+
+        
+
+        $row = mysqli_fetch_assoc($result) ;     
+  
+
+            $_SESSION['id'] = $row['id'];
+			$_SESSION['username'] = $row['username'];
+
+            echo 1;
+        
+        }
+        if ($error != "") echo $error;
+
+    }
+	
+	
+	if ($_GET['action'] == "signupgoogle"){
+
+        $error = "" ;
+
+        if (!$_POST['email']) {
+
+            $error = "An email address or an username is requested" ;
+        }
+
+       
+        
+        else if (!filter_var( $_POST['email'] , FILTER_VALIDATE_EMAIL)) {
+            $error = "Invalid email format";
+          }
+        
         $query = "SELECT * FROM user WHERE email= '". mysqli_real_escape_string($link, $_POST['email'])."' LIMIT 1";
         $result = mysqli_query($link, $query);
         if(mysqli_num_rows($result) > 0 ) $error = "That email is already taken";
         else {
-            $query = "INSERT INTO user ( email ) VALUES ('". mysqli_real_escape_string($link, $_POST['email'])."' ) ";
+            $query = "INSERT INTO user (email) VALUES ('". mysqli_real_escape_string($link, $_POST['email'])."' ) ";
             if (mysqli_query($link , $query)) {
                 
                 $_SESSION['id'] = mysqli_insert_id($link);
@@ -93,7 +129,6 @@
         
 
     }
-	
 	
 
     if ($_GET['action'] == "signup"){
