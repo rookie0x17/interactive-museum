@@ -181,7 +181,7 @@
             $error = "An email address requested" ;
         } 
 
-         /*
+         
         else if (!$_POST['password-rec']) {
 
             $error = "A password is requested" ;
@@ -191,14 +191,14 @@
 
             $error = "Password must be the same" ;
         } 
-        */
+        
 
         else {
             $query = "SELECT * FROM user WHERE email= '". mysqli_real_escape_string($link, $_POST['email-rec'])."' LIMIT 1";
             $result = mysqli_query($link, $query);
             $row = mysqli_fetch_assoc($result) ; 
 
-            if(mysqli_num_rows($result) == 0 ) $error = "There is not a user with this email";
+            if(mysqli_num_rows($result) == 0 ) echo "There is not a user with this email";
             else {
 
                 $query = "UPDATE user SET password = '". md5(md5($row['id']).$_POST['password-rec']) ."' WHERE id = " .$row['id']." LIMIT 1";
