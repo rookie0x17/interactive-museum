@@ -86,7 +86,7 @@
         <label for="opass">Repeat password <span class="required"></span></label>
         <input type="password" name="opass" class="form-control" id="r-password" placeholder="repeat password" required="required" autocomplete="off">
         <span id="error_opass" class="error"></span>
-		<input type="checkbox" class="ptxt" > Show</input>
+		<input type="checkbox" class="ptxt" style="margin-top:20px;" > Show password</input>
       </div>
   
   
@@ -136,7 +136,7 @@
         <label for="opass">Repeat password <span class="required"></span></label>
         <input type="password" name="opass" class="form-control" id="r-password-rec" placeholder="repeat password" required="required" autocomplete="off">
         <span id="error_opass" class="error"></span>
-		<input type="checkbox" class="ptxt" > Show</input>
+		<input type="checkbox" class="ptxt" style="margin-top:20px;"> Show password</input>
       </div>
 </form>
       </div>
@@ -270,7 +270,7 @@
 });
 
 $(document).ready(function(){
-	$('.pass_show-l').append('<input type="checkbox" class="ptxt-l" > Show</input>');
+	$('.pass_show-l').append('<input type="checkbox" class="ptxt-l" style="margin-top:20px;"> Show password</input>');
 });
 $(document).on('click','.pass_show-l .ptxt-l', function(){ 
 	$(this).text($(this).text() == "Show" ? "Hide" : "Show");

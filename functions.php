@@ -281,7 +281,7 @@
         $idartwork = $row['id'];
         
 
-        $query = "SELECT * FROM isRated WHERE idartwork=' ".mysqli_real_escape_string($link,$idartwork)."' ORDER BY `date`";
+        $query = "SELECT * FROM isRated WHERE idartwork=' ".mysqli_real_escape_string($link,$idartwork)."' ORDER BY `date` DESC";
 
         $result = mysqli_query($link , $query);
 
