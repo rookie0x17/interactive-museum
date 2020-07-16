@@ -81,11 +81,18 @@ p {
 </style>
 </head>
 <body>
+<?php 
+	$artname = $_GET['namework'];
+	echo "<input type='hidden' name='namework' value='".$artname."'>"
+	
+	?>
 <!-- Button trigger modal -->
+<div>
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
   Leave a feedback
 </button>
-
+<div id="details" style="color:white;font-size:35px;margin-left:1400px;margin-top:0px">Hologram of : <?php echo "$artname" ?></div>
+</div>
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -118,10 +125,7 @@ p {
     </div>
   </div>
 </div>
-<?php 
-	$artname = $_GET['namework'];
-	echo "<input type='hidden' name='namework' value='".$artname."'>"
-	?>
+
 
 	<script type="text/javascript">
 	
@@ -251,6 +255,7 @@ p {
 			
 			renderer.setSize(window.innerWidth, window.innerHeight);	
 		}
+		
 		
 		
 				
@@ -438,7 +443,7 @@ p {
         data: "rate=" + val + "&comment=" + $("#message-text").val() + "&name=" + type + "&favorite=" + $("#favorite").val(),
         success: function(result) {
           if(result == "1"){
-            window.location.assign("https://localhost/int-museum/?page=hologram");
+            window.location.assign("https://localhost/int-museum/?page=artworkPres&namework="+type);
           } else {
 
             $("#loginalert").html(result).show();
