@@ -110,7 +110,7 @@
 
         if(mysqli_num_rows($result) == 0){
 
-            echo "<p>There are no artwork</p>";
+            echo "<p>There are no favorite artwork</p>";
 
         }
 
