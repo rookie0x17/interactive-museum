@@ -3,7 +3,7 @@
     session_start();
     $_SESSION['id'] = isset( $_SESSION['id'] )? $_SESSION['id'] : '';
 
-    $link = mysqli_connect("localhost" , "alex" , "alessandro" , "interactive");
+    $link = mysqli_connect("localhost" , "daniel" , "museum" , "int-museum");
 
     if (mysqli_connect_errno()) {
 
@@ -226,15 +226,7 @@
                 <h5><strong> Created in:</strong> ".$row['since'] ."</h5>
 
                 <br>
-                <form class='form-inline'>
-                <div class='form-group'>
-                <input type='hidden' name='page' value='hologram'>
-                <input type='hidden' name='namework' value='".$row['name']."'>
-                </div>
-                <button type='submit' class='btn btn-primary'> Start Hologram </button>
-				
-				<!-- AddToAny BEGIN -->
-				</form>
+                
 				<div style='margin-top:20px;'>Share with your friends:</div>
 			<div class='a2a_kit a2a_kit_size_32 a2a_default_style' style='margin-top:20px;'>
 				<a class='a2a_dd' href='https://www.addtoany.com/share'></a>
@@ -246,6 +238,21 @@
 			</div>
                 
                 </div>
+
+                <div class='col-md-4'>
+
+                <form class='form-inline'>
+                <div class='form-group'>
+                <input type='hidden' name='page' value='hologram'>
+                <input type='hidden' name='namework' value='".$row['name']."'>
+                </div>
+                <button type='submit' class='btn btn-danger btn-lg btn-block' style='position:absolute;right:50px;bottom:0;'> Play Hologram </button>
+				
+			
+                </form>
+
+                </div>
+
             </div>
             
 
