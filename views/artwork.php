@@ -28,6 +28,8 @@
         <div class="col-md-4">
 
                 <?php displaySearch(); ?>
+                <hr>
+                <?php displayArtworkRequest(); ?>
 
         </div>
 

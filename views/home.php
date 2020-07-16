@@ -12,7 +12,7 @@
             </br> The user will find a huge catalog of artwork and for each there is an hologram 
                with which he can see it in <strong> 3D </strong>  and can rotate it to admire it from every point of view, simply moving 
              a device in one direction, the hologram will rotate in the same direction. Finally, the visitor will be 
-             able to leave his feedback to make shine his favorite artwork. In fact, the best-rated one will have a light on!
+             able to leave his feedback!
 
              </p>
 

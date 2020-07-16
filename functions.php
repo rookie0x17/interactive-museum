@@ -233,6 +233,17 @@
                 </div>
                 <button type='submit' class='btn btn-primary'> Start Hologram </button>
                 </form>
+                <!-- AddToAny BEGIN -->
+                </form>
+                <div style='margin-top:20px;'>Share with your friends:</div>
+            <div class='a2a_kit a2a_kit_size_32 a2a_default_style' style='margin-top:20px;'>
+                <a class='a2a_dd' href='https://www.addtoany.com/share%27%3E</a>
+                <a class='a2a_button_facebook'></a>
+                <a class='a2a_button_twitter'></a>
+                <a class='a2a_button_email'></a>
+                <a class='a2a_button_whatsapp'></a>
+                <a class='a2a_button_telegram'></a>
+            </div>
                 </div>
             </div>
             
@@ -243,15 +254,7 @@
             <p class='lead'>".$row['descrizione']."</p>
             </div>
             </div>
-			<!-- AddToAny BEGIN -->
-			<div class='a2a_kit a2a_kit_size_32 a2a_default_style'>
-				<a class='a2a_dd' href='https://www.addtoany.com/share'></a>
-				<a class='a2a_button_facebook'></a>
-				<a class='a2a_button_twitter'></a>
-				<a class='a2a_button_email'></a>
-				<a class='a2a_button_whatsapp'></a>
-				<a class='a2a_button_telegram'></a>
-			</div>
+			
 <script async src='https://static.addtoany.com/menu/page.js'></script>
 <!-- AddToAny END -->
         ";
@@ -331,4 +334,44 @@
     function displaySuccess(){
        if ($_GET['email-rec']!="") echo "<script>alert('Success')</script>";
     }
+
+    function displayArtworkRequest(){
+        echo '<div style="margin-left:30px;margin-top:50px;">
+        <p class="lead" style="margin-left:50px;">Press the button below to request an artwork that you want to be in the catalog and we try to add it soon as possible!</p>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="margin-top:20px;margin-left:50px;">
+          Request artwork
+        </button>
+        
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Request an artwork</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+              
+                <form>
+                  <div class="form-group">
+                    <label for="message-text" class="col-form-label"><p class="lead">Write down the name of the artwork: </p></label>
+                    <textarea class="form-control" id="message-text"></textarea>
+                  </div>
+                </form>
+              </div>
+              
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="Commit">Send Request</button>
+                <button type="button" class="btn btn-secondary"  data-dismiss="modal" >Close</button>
+                
+              </div>
+            </div>
+          </div>
+        </div>';
+    }
 ?>
+
+
+
