@@ -3,7 +3,7 @@
     session_start();
     $_SESSION['id'] = isset( $_SESSION['id'] )? $_SESSION['id'] : '';
 
-    $link = mysqli_connect("localhost" , "daniel" , "museum" , "int-museum");
+    $link = mysqli_connect("localhost" , "alex" , "alessandro" , "interactive");
 
     if (mysqli_connect_errno()) {
 
@@ -232,18 +232,19 @@
                 <input type='hidden' name='namework' value='".$row['name']."'>
                 </div>
                 <button type='submit' class='btn btn-primary'> Start Hologram </button>
-                </form>
-                <!-- AddToAny BEGIN -->
-                </form>
-                <div style='margin-top:20px;'>Share with your friends:</div>
-            <div class='a2a_kit a2a_kit_size_32 a2a_default_style' style='margin-top:20px;'>
-                <a class='a2a_dd' href='https://www.addtoany.com/share%27%3E</a>
-                <a class='a2a_button_facebook'></a>
-                <a class='a2a_button_twitter'></a>
-                <a class='a2a_button_email'></a>
-                <a class='a2a_button_whatsapp'></a>
-                <a class='a2a_button_telegram'></a>
-            </div>
+				
+				<!-- AddToAny BEGIN -->
+				</form>
+				<div style='margin-top:20px;'>Share with your friends:</div>
+			<div class='a2a_kit a2a_kit_size_32 a2a_default_style' style='margin-top:20px;'>
+				<a class='a2a_dd' href='https://www.addtoany.com/share'></a>
+				<a class='a2a_button_facebook'></a>
+				<a class='a2a_button_twitter'></a>
+				<a class='a2a_button_email'></a>
+				<a class='a2a_button_whatsapp'></a>
+				<a class='a2a_button_telegram'></a>
+			</div>
+                
                 </div>
             </div>
             
@@ -333,9 +334,12 @@
 
     function displaySuccess(){
        if ($_GET['email-rec']!="") echo "<script>alert('Success')</script>";
+	   
+	   
+	 
     }
-
-    function displayArtworkRequest(){
+	
+	function displayArtworkRequest(){
         echo '<div style="margin-left:30px;margin-top:50px;">
         <p class="lead" style="margin-left:50px;">Press the button below to request an artwork that you want to be in the catalog and we try to add it soon as possible!</p>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="margin-top:20px;margin-left:50px;">
@@ -372,6 +376,3 @@
         </div>';
     }
 ?>
-
-
-
