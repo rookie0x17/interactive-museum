@@ -61,7 +61,10 @@
     
   <?php 
       if(!EMPTY($_SESSION['id'])) { 
-  ?>
+  ?>    
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <a class="navbar-brand" href="" style="font-style:italic"> <?php echo $_SESSION['username'] ?> </a>
+          </nav>
         <a class="btn btn-primary btn-lg" href="?function=logout" style="margin-right:15px" > Logout</a>
   
 </button>
