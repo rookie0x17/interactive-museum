@@ -28,7 +28,7 @@
         <div class="col-md-4">
 
                 <?php displaySearch(); ?>
-                <hr>
+				<hr>
                 <?php displayArtworkRequest(); ?>
 
         </div>
